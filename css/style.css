@@ -1945,3 +1945,44 @@ h3 em,
   }
 
 }
+
+/* =========================================================
+   VISIBILITY SAFETY FIX
+   Ensure academic content remains visible even if
+   JavaScript animations fail or are delayed.
+========================================================= */
+
+.section-heading,
+.interest-item,
+.research-row,
+.academic-item,
+.contact-preview,
+.archive-row {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+/* Keep research filtering functional */
+.research-row[hidden] {
+  display: none !important;
+}
+
+/* Ensure text itself is never accidentally hidden */
+.hero-copy,
+.hero-aside,
+.hero-name,
+.hero-description,
+.section-heading h2,
+.section-intro,
+.interest-item h3,
+.research-title,
+.research-title h3,
+.research-title p,
+.academic-content,
+.academic-item h3,
+.academic-item p,
+.contact-preview h2 {
+  opacity: 1;
+  visibility: visible;
+}
