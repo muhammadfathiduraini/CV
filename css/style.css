@@ -2356,3 +2356,574 @@ h3 em,
   }
 
 }
+
+/* =========================================================
+   ACADEMIC CV SYSTEM
+========================================================= */
+
+.cv-hero {
+  padding: 155px 0 120px;
+  background: var(--navy);
+  color: var(--white);
+}
+
+.cv-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 100px;
+  align-items: end;
+}
+
+.cv-hero h1 {
+  max-width: 1000px;
+  margin: 20px 0 35px;
+  font-family: var(--serif);
+  font-size: clamp(65px, 9vw, 125px);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+}
+
+.cv-hero h1 em {
+  display: block;
+  color: var(--sand);
+  font-style: italic;
+}
+
+.cv-hero-lead {
+  max-width: 760px;
+  color: rgba(255, 253, 248, 0.66);
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.cv-hero-meta {
+  border-left: 1px solid rgba(255, 253, 248, 0.18);
+  padding-left: 30px;
+}
+
+.cv-meta-item {
+  margin-bottom: 28px;
+}
+
+.cv-meta-item:last-child {
+  margin-bottom: 0;
+}
+
+.cv-meta-item span {
+  display: block;
+  margin-bottom: 8px;
+  color: var(--sand);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cv-meta-item strong {
+  display: block;
+  color: rgba(255, 253, 248, 0.8);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1.65;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.cv-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: 120px;
+  align-items: start;
+}
+
+.cv-large-text {
+  margin: 0;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(38px, 4.5vw, 62px);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.98;
+}
+
+.cv-profile-body p {
+  max-width: 650px;
+  margin-bottom: 24px;
+  color: rgba(32, 35, 41, 0.7);
+  font-size: 15px;
+  line-height: 1.95;
+}
+
+
+/* =========================================================
+   EDUCATION
+========================================================= */
+
+.cv-timeline {
+  border-top: 1px solid rgba(16, 28, 44, 0.2);
+}
+
+.cv-timeline-item {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 60px;
+  padding: 55px 0;
+  border-bottom: 1px solid rgba(16, 28, 44, 0.2);
+}
+
+.cv-timeline-date {
+  color: var(--burgundy);
+  font-family: var(--serif);
+  font-size: 28px;
+}
+
+.cv-small-label {
+  margin-bottom: 12px;
+  color: var(--burgundy);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cv-timeline-content h3 {
+  margin: 0 0 12px;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 38px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.cv-institution {
+  margin-bottom: 8px;
+  color: var(--navy);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.cv-timeline-content p:last-child {
+  color: rgba(32, 35, 41, 0.58);
+  font-size: 13px;
+}
+
+
+/* =========================================================
+   CV INTERESTS
+========================================================= */
+
+.cv-interest-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid rgba(16, 28, 44, 0.15);
+  border-left: 1px solid rgba(16, 28, 44, 0.15);
+}
+
+.cv-interest {
+  position: relative;
+  min-height: 210px;
+  padding: 32px;
+  border-right: 1px solid rgba(16, 28, 44, 0.15);
+  border-bottom: 1px solid rgba(16, 28, 44, 0.15);
+  transition:
+    background 0.3s ease,
+    color 0.3s ease;
+}
+
+.cv-interest-number {
+  display: block;
+  margin-bottom: 55px;
+  color: var(--burgundy);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.cv-interest h3 {
+  max-width: 400px;
+  margin: 0;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 36px;
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.cv-interest-arrow {
+  position: absolute;
+  right: 30px;
+  bottom: 28px;
+  color: var(--burgundy);
+  font-size: 18px;
+}
+
+.cv-interest:hover {
+  background: var(--navy);
+}
+
+.cv-interest:hover h3 {
+  color: var(--white);
+}
+
+.cv-interest:hover .cv-interest-number,
+.cv-interest:hover .cv-interest-arrow {
+  color: var(--sand);
+}
+
+
+/* =========================================================
+   SELECTED RESEARCH
+========================================================= */
+
+.cv-research-list {
+  border-top: 1px solid rgba(255, 253, 248, 0.18);
+}
+
+.cv-research-row {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr) 50px;
+  gap: 30px;
+  align-items: center;
+  padding: 42px 0;
+  border-bottom: 1px solid rgba(255, 253, 248, 0.18);
+  color: var(--white);
+  transition:
+    padding 0.3s ease,
+    background 0.3s ease;
+}
+
+.cv-research-row:hover {
+  padding-left: 18px;
+}
+
+.cv-research-index {
+  color: var(--sand);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.cv-research-type {
+  margin-bottom: 10px;
+  color: rgba(255, 253, 248, 0.5);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.cv-research-main h3 {
+  margin: 0 0 12px;
+  color: var(--white);
+  font-family: var(--serif);
+  font-size: clamp(30px, 4vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  line-height: 0.95;
+}
+
+.cv-research-main h3 em {
+  color: var(--sand);
+  font-style: italic;
+}
+
+.cv-research-main p {
+  margin: 0;
+  color: rgba(255, 253, 248, 0.5);
+  font-size: 11px;
+}
+
+.cv-research-arrow {
+  color: var(--sand);
+  font-size: 20px;
+}
+
+
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.cv-experience-list {
+  border-top: 1px solid rgba(16, 28, 44, 0.15);
+}
+
+.cv-experience-item {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 60px;
+  padding: 55px 0;
+  border-bottom: 1px solid rgba(16, 28, 44, 0.15);
+}
+
+.cv-experience-date {
+  color: var(--burgundy);
+  font-family: var(--serif);
+  font-size: 25px;
+}
+
+.cv-experience-item h3 {
+  margin: 0 0 8px;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 40px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+}
+
+.cv-experience-item p {
+  max-width: 680px;
+  margin-bottom: 10px;
+  color: rgba(32, 35, 41, 0.62);
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   ENGAGEMENT
+========================================================= */
+
+.cv-engagement-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border-top: 1px solid rgba(255, 253, 248, 0.18);
+  border-left: 1px solid rgba(255, 253, 248, 0.18);
+}
+
+.cv-engagement-item {
+  min-height: 260px;
+  padding: 35px;
+  border-right: 1px solid rgba(255, 253, 248, 0.18);
+  border-bottom: 1px solid rgba(255, 253, 248, 0.18);
+}
+
+.cv-engagement-item > span {
+  display: block;
+  margin-bottom: 65px;
+  color: var(--sand);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+}
+
+.cv-engagement-item h3 {
+  margin: 0 0 15px;
+  color: var(--white);
+  font-family: var(--serif);
+  font-size: 32px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.cv-engagement-item p {
+  max-width: 500px;
+  margin: 0;
+  color: rgba(255, 253, 248, 0.6);
+  font-size: 12px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   TRAINING
+========================================================= */
+
+.cv-training-list {
+  border-top: 1px solid rgba(16, 28, 44, 0.15);
+}
+
+.cv-training-row {
+  display: grid;
+  grid-template-columns: 70px minmax(0, 1fr);
+  gap: 30px;
+  align-items: center;
+  padding: 30px 0;
+  border-bottom: 1px solid rgba(16, 28, 44, 0.15);
+}
+
+.cv-training-row > span {
+  color: var(--burgundy);
+  font-size: 9px;
+  font-weight: 700;
+}
+
+.cv-training-row h3 {
+  margin: 0 0 5px;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.cv-training-row p {
+  margin: 0;
+  color: rgba(32, 35, 41, 0.55);
+  font-size: 11px;
+}
+
+
+/* =========================================================
+   ACADEMIC DIRECTION
+========================================================= */
+
+.cv-direction {
+  padding: 130px 0;
+  background: var(--sand);
+}
+
+.cv-direction-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.7fr);
+  gap: 120px;
+  align-items: end;
+}
+
+.cv-direction h2 {
+  max-width: 850px;
+  margin: 20px 0 0;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(55px, 7vw, 95px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.87;
+}
+
+.cv-direction h2 em {
+  color: var(--burgundy);
+  font-style: italic;
+}
+
+.cv-direction-grid > div:last-child p {
+  margin-bottom: 22px;
+  color: rgba(32, 35, 41, 0.68);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.text-link {
+  display: inline-block;
+  margin-top: 15px;
+  color: var(--navy);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--navy);
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .cv-hero-grid,
+  .cv-profile-grid,
+  .cv-direction-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .cv-hero-meta {
+    border-left: 0;
+    border-top: 1px solid rgba(255, 253, 248, 0.18);
+    padding: 30px 0 0;
+  }
+
+  .cv-interest-grid,
+  .cv-engagement-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-timeline-item,
+  .cv-experience-item {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 35px;
+  }
+
+  .cv-direction {
+    padding: 95px 0;
+  }
+
+}
+
+
+@media (max-width: 680px) {
+
+  .cv-hero {
+    padding: 110px 0 85px;
+  }
+
+  .cv-hero h1 {
+    font-size: 58px;
+  }
+
+  .cv-hero-lead {
+    font-size: 14px;
+  }
+
+  .cv-profile-grid {
+    gap: 45px;
+  }
+
+  .cv-large-text {
+    font-size: 40px;
+  }
+
+  .cv-timeline-item,
+  .cv-experience-item {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .cv-timeline-content h3,
+  .cv-experience-item h3 {
+    font-size: 34px;
+  }
+
+  .cv-interest {
+    min-height: 190px;
+  }
+
+  .cv-interest h3 {
+    font-size: 31px;
+  }
+
+  .cv-research-row {
+    grid-template-columns: 35px minmax(0, 1fr) 25px;
+    gap: 15px;
+    padding: 32px 0;
+  }
+
+  .cv-research-main h3 {
+    font-size: 31px;
+  }
+
+  .cv-engagement-item {
+    min-height: 220px;
+  }
+
+  .cv-engagement-item > span {
+    margin-bottom: 45px;
+  }
+
+  .cv-training-row {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 15px;
+  }
+
+  .cv-training-row h3 {
+    font-size: 26px;
+  }
+
+  .cv-direction h2 {
+    font-size: 56px;
+  }
+
+}
