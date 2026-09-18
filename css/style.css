@@ -1472,3 +1472,476 @@ h3 em,
   background: var(--burgundy);
   color: var(--white);
 }
+
+/* =========================================================
+   CV PAGE
+========================================================= */
+
+.cv-profile-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, .8fr) minmax(0, 1.2fr);
+  gap: 100px;
+
+  padding-top: 10px;
+}
+
+.cv-profile-lead h3 {
+  max-width: 560px;
+
+  margin: 0;
+
+  font-family: var(--serif);
+  font-size: clamp(55px, 7vw, 100px);
+  font-weight: 500;
+  letter-spacing: -.05em;
+  line-height: .8;
+}
+
+.cv-profile-lead h3 em {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.cv-profile-text {
+  max-width: 720px;
+
+  border-top: 1px solid var(--line-dark);
+}
+
+.cv-profile-text p {
+  margin: 0;
+
+  padding: 25px 0;
+
+  border-bottom: 1px solid var(--line-dark);
+
+  color: rgba(32, 35, 41, .72);
+
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+
+/* =========================================================
+   CV TIMELINE
+========================================================= */
+
+.cv-timeline {
+  border-top: 1px solid var(--line-light);
+}
+
+.cv-timeline-item {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr);
+  gap: 60px;
+
+  padding: 50px 0;
+
+  border-bottom: 1px solid var(--line-light);
+}
+
+.cv-timeline-date {
+  color: var(--sand);
+
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.cv-timeline-content {
+  max-width: 850px;
+}
+
+.cv-item-type {
+  margin-bottom: 12px;
+
+  color: rgba(255, 255, 255, .4);
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+}
+
+.cv-timeline-content h3 {
+  margin-bottom: 12px;
+
+  color: var(--white);
+
+  font-size: clamp(38px, 5vw, 65px);
+  letter-spacing: -.04em;
+  line-height: .9;
+}
+
+.cv-timeline-content h3 em {
+  display: block;
+}
+
+.cv-timeline-content p:not(.cv-item-type) {
+  margin-bottom: 7px;
+
+  color: rgba(255, 255, 255, .62);
+
+  font-size: 14px;
+}
+
+
+/* =========================================================
+   CV INTEREST LIST
+========================================================= */
+
+.cv-interest-list {
+  border-top: 1px solid var(--line-dark);
+}
+
+.cv-interest-row {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr) 40px;
+  align-items: center;
+  gap: 25px;
+
+  min-height: 105px;
+
+  border-bottom: 1px solid var(--line-dark);
+
+  transition:
+    padding .35s var(--ease),
+    background .35s var(--ease);
+}
+
+.cv-interest-row > span {
+  color: var(--burgundy);
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.cv-interest-row h3 {
+  margin: 0;
+
+  font-size: clamp(30px, 4vw, 52px);
+  letter-spacing: -.04em;
+  line-height: .9;
+}
+
+.cv-interest-row strong {
+  font-size: 20px;
+  font-weight: 400;
+
+  transition: transform .3s var(--ease);
+}
+
+.cv-interest-row:hover {
+  padding-left: 20px;
+}
+
+.cv-interest-row:hover strong {
+  transform: translate(4px, -4px);
+}
+
+
+/* =========================================================
+   CV RESEARCH
+========================================================= */
+
+.cv-research-list {
+  border-top: 1px solid var(--line-dark);
+}
+
+.cv-research-item {
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr) 50px;
+  align-items: center;
+  gap: 50px;
+
+  min-height: 190px;
+
+  border-bottom: 1px solid var(--line-dark);
+
+  transition:
+    padding .35s var(--ease),
+    background .35s var(--ease);
+}
+
+.cv-research-item:hover {
+  padding-left: 18px;
+}
+
+.cv-research-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  color: rgba(32, 35, 41, .45);
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+
+.cv-research-meta span:first-child {
+  color: var(--burgundy);
+}
+
+.cv-research-item h3 {
+  max-width: 760px;
+
+  margin-bottom: 10px;
+
+  font-size: clamp(35px, 4.5vw, 62px);
+  letter-spacing: -.04em;
+  line-height: .87;
+}
+
+.cv-research-item h3 em {
+  display: block;
+}
+
+.cv-research-item p {
+  margin: 0;
+
+  color: rgba(32, 35, 41, .52);
+
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+
+.cv-research-arrow {
+  display: grid;
+  place-items: center;
+
+  width: 44px;
+  height: 44px;
+
+  border: 1px solid var(--line-dark);
+  border-radius: 50%;
+
+  transition:
+    background .3s var(--ease),
+    color .3s var(--ease),
+    transform .3s var(--ease);
+}
+
+.cv-research-item:hover .cv-research-arrow {
+  background: var(--burgundy);
+  color: var(--white);
+
+  transform: translate(4px, -4px);
+}
+
+
+/* =========================================================
+   CV ENGAGEMENT
+========================================================= */
+
+.cv-engagement-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  border-top: 1px solid var(--line-dark);
+  border-left: 1px solid var(--line-dark);
+}
+
+.cv-engagement-card {
+  min-height: 300px;
+
+  padding: 32px;
+
+  border-right: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
+
+  transition:
+    background .35s var(--ease),
+    color .35s var(--ease);
+}
+
+.cv-engagement-card > span {
+  color: var(--burgundy);
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.cv-engagement-card h3 {
+  max-width: 450px;
+
+  margin: 100px 0 12px;
+
+  font-size: clamp(28px, 3vw, 43px);
+  letter-spacing: -.035em;
+  line-height: .9;
+}
+
+.cv-engagement-card p {
+  max-width: 470px;
+
+  margin: 0;
+
+  color: rgba(32, 35, 41, .62);
+
+  font-size: 13px;
+  line-height: 1.75;
+}
+
+.cv-engagement-card:hover {
+  background: var(--navy);
+  color: var(--white);
+}
+
+.cv-engagement-card:hover > span {
+  color: var(--sand);
+}
+
+.cv-engagement-card:hover p {
+  color: rgba(255, 255, 255, .62);
+}
+
+
+/* =========================================================
+   CV TRAINING
+========================================================= */
+
+.cv-training-list {
+  border-top: 1px solid var(--line-dark);
+}
+
+.cv-training-row {
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+
+  gap: 35px;
+
+  padding: 30px 0;
+
+  border-bottom: 1px solid var(--line-dark);
+}
+
+.cv-training-row > span {
+  color: var(--burgundy);
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .15em;
+}
+
+.cv-training-row h3 {
+  margin-bottom: 5px;
+
+  font-size: 28px;
+  letter-spacing: -.025em;
+  line-height: 1.1;
+}
+
+.cv-training-row p {
+  margin: 0;
+
+  color: rgba(32, 35, 41, .58);
+
+  font-size: 12px;
+}
+
+
+/* =========================================================
+   CV RESPONSIVE
+========================================================= */
+
+@media (max-width: 900px) {
+
+  .cv-profile-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+  .cv-timeline-item {
+    grid-template-columns: 120px minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .cv-research-item {
+    grid-template-columns: 130px minmax(0, 1fr) 45px;
+    gap: 25px;
+  }
+
+}
+
+
+@media (max-width: 680px) {
+
+  .cv-profile-grid {
+    gap: 45px;
+  }
+
+  .cv-profile-lead h3 {
+    font-size: 58px;
+  }
+
+  .cv-timeline-item {
+    grid-template-columns: 1fr;
+    gap: 18px;
+
+    padding: 38px 0;
+  }
+
+  .cv-timeline-content h3 {
+    font-size: 45px;
+  }
+
+  .cv-interest-row {
+    grid-template-columns: 45px minmax(0, 1fr) 30px;
+
+    min-height: 90px;
+
+    gap: 15px;
+  }
+
+  .cv-interest-row h3 {
+    font-size: 30px;
+  }
+
+  .cv-research-item {
+    grid-template-columns: 1fr 35px;
+
+    gap: 20px;
+
+    padding: 35px 0;
+  }
+
+  .cv-research-meta {
+    grid-column: 1 / -1;
+
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .cv-research-item h3 {
+    font-size: 38px;
+  }
+
+  .cv-engagement-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cv-engagement-card {
+    min-height: 250px;
+  }
+
+  .cv-engagement-card h3 {
+    margin-top: 75px;
+  }
+
+  .cv-training-row {
+    grid-template-columns: 40px minmax(0, 1fr);
+    gap: 20px;
+  }
+
+  .cv-training-row h3 {
+    font-size: 24px;
+  }
+
+}
