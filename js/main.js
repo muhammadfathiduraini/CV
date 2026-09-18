@@ -11,10 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
      RESEARCH DATA
      ========================================================= */
 
-  const items =
-  Array.isArray(window.researchItems)
-    ? window.researchItems
-    : [];
+  const items = Array.isArray(window.researchItems)
+     ? window.researchItems
+     : [];
 
 
   /* =========================================================
