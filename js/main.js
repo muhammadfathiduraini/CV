@@ -11,11 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
      RESEARCH DATA
      ========================================================= */
 
-  const items =
-    typeof researchItems !== "undefined" &&
-    Array.isArray(researchItems)
-      ? researchItems
-      : [];
+  const items = Array.isArray(researchItems)
+     ? researchItems
+     : [];
 
 
   /* =========================================================
