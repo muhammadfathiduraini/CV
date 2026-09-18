@@ -1,15 +1,10 @@
-/* =========================================================
-   FATHI ACADEMIC CV
-   MAIN INTERACTIONS
-========================================================= */
-
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
   /* =========================================================
      CURRENT YEAR
   ========================================================= */
 
-  document.querySelectorAll("[data-current-year]").forEach((element) => {
+  document.querySelectorAll("[data-current-year]").forEach(function (element) {
     element.textContent = new Date().getFullYear();
   });
 
@@ -23,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (menuToggle && mainNav) {
 
-    menuToggle.addEventListener("click", () => {
+    menuToggle.addEventListener("click", function () {
 
       const isOpen = mainNav.classList.toggle("is-open");
 
@@ -34,7 +29,260 @@ document.addEventListener("DOMContentLoaded", () => {
         String(isOpen)
       );
 
+      document.body.classList.toggle(
+        "menu-open",
+        isOpen
+      );
+
+    });
+
+
+    mainNav.querySelectorAll("a").forEach(function (link) {
+
+      link.addEventListener("click", function () {
+
+        mainNav.classList.remove("is-open");
+        menuToggle.classList.remove("is-open");
+
+        menuToggle.setAttribute(
+          "aria-expanded",
+          "false"
+        );
+
+        document.body.classList.remove(
+          "menu-open"
+        );
+
+      });
+
+    });
+
+  }
+
+
+  /* =========================================================
+     RESEARCH FILTER
+  ========================================================= */
+
+  const researchList =
+    document.getElementById("researchList");
+
+  const filterButtons =
+    document.querySelectorAll(".filter-button");
+
+  const researchRows =
+    document.querySelectorAll(".research-row");
+
+
+  if (
+    researchList &&
+    filterButtons.length &&
+    researchRows.length
+  ) {
+
+    let emptyMessage =
+      researchList.querySelector(".research-empty");
+
+
+    if (!emptyMessage) {
+
+      emptyMessage =
+        document.createElement("div");
+
+      emptyMessage.className =
+        "research-empty";
+
+      emptyMessage.textContent =
+        "No research entries are currently listed under this field.";
+
+      emptyMessage.hidden = true;
+
+      researchList.appendChild(emptyMessage);
+
+    }
+
+
+    function applyFilter(filter) {
+
+      let visibleCount = 0;
+
+
+      researchRows.forEach(function (row) {
+
+        const fields =
+          (row.dataset.fields || "")
+            .split(/\s+/)
+            .filter(Boolean);
+
+
+        const visible =
+          filter === "all" ||
+          fields.includes(filter);
+
+
+        row.hidden = !visible;
+
+
+        if (visible) {
+          visibleCount++;
+        }
+
+      });
+
+
+      emptyMessage.hidden =
+        visibleCount > 0;
+
+
+      filterButtons.forEach(function (button) {
+
+        const active =
+          button.dataset.filter === filter;
+
+
+        button.classList.toggle(
+          "active",
+          active
+        );
+
+
+        button.setAttribute(
+          "aria-pressed",
+          String(active)
+        );
+
+      });
+
+    }
+
+
+    filterButtons.forEach(function (button) {
+
+      button.addEventListener(
+        "click",
+        function () {
+
+          const filter =
+            button.dataset.filter || "all";
+
+
+          applyFilter(filter);
+
+
+          const url =
+            new URL(window.location.href);
+
+
+          if (filter === "all") {
+
+            url.searchParams.delete(
+              "field"
+            );
+
+          } else {
+
+            url.searchParams.set(
+              "field",
+              filter
+            );
+
+          }
+
+
+          window.history.replaceState(
+            {},
+            "",
+            url
+          );
+
+        }
+      );
+
+    });
+
+
+    const params =
+      new URLSearchParams(
+        window.location.search
+      );
+
+
+    const requested =
+      params.get("field");
+
+
+    const valid =
+      requested &&
+      [...filterButtons].some(
+        function (button) {
+          return button.dataset.filter === requested;
+        }
+      )
+        ? requested
+        : "all";
+
+
+    applyFilter(valid);
+
+  }
+
+
+  /* =========================================================
+     ESCAPE KEY
+  ========================================================= */
+
+  document.addEventListener(
+    "keydown",
+    function (event) {
+
+      if (
+        event.key !== "Escape" ||
+        !mainNav ||
+        !menuToggle
+      ) {
+        return;
+      }
+
+
+      mainNav.classList.remove("is-open");
+      menuToggle.classList.remove("is-open");
+
+
       menuToggle.setAttribute(
+        "aria-expanded",
+        "false"
+      );
+
+
+      document.body.classList.remove(
+        "menu-open"
+      );
+
+    }
+  );
+
+
+  /* =========================================================
+     EXTERNAL LINKS
+  ========================================================= */
+
+  document
+    .querySelectorAll('a[href^="http"]')
+    .forEach(function (link) {
+
+      link.setAttribute(
+        "target",
+        "_blank"
+      );
+
+      link.setAttribute(
+        "rel",
+        "noopener noreferrer"
+      );
+
+    });
+
+});      menuToggle.setAttribute(
         "aria-label",
         isOpen
           ? "Close navigation"
