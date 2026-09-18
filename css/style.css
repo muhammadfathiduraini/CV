@@ -2927,3 +2927,243 @@ h3 em,
   }
 
 }
+
+/* =========================================================
+   CONTACT PAGE
+========================================================= */
+
+.contact-hero {
+  padding: 155px 0 120px;
+  background: var(--navy);
+  color: var(--white);
+}
+
+.contact-hero h1 {
+  max-width: 1000px;
+  margin: 22px 0 35px;
+  font-family: var(--serif);
+  font-size: clamp(70px, 10vw, 140px);
+  font-weight: 500;
+  letter-spacing: -0.06em;
+  line-height: 0.82;
+}
+
+.contact-hero h1 em {
+  display: block;
+  color: var(--sand);
+  font-style: italic;
+}
+
+.contact-hero p {
+  max-width: 650px;
+  color: rgba(255, 253, 248, 0.62);
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+
+/* CONTACT INFORMATION */
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 120px;
+  align-items: start;
+}
+
+.contact-intro h2 {
+  margin: 18px 0 25px;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(50px, 6vw, 82px);
+  font-weight: 500;
+  letter-spacing: -0.05em;
+  line-height: 0.88;
+}
+
+.contact-intro h2 em {
+  display: block;
+  color: var(--burgundy);
+  font-style: italic;
+}
+
+.contact-intro p {
+  max-width: 470px;
+  color: rgba(32, 35, 41, 0.62);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.contact-links {
+  border-top: 1px solid rgba(16, 28, 44, 0.16);
+}
+
+.contact-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 30px;
+  padding: 34px 0;
+  border-bottom: 1px solid rgba(16, 28, 44, 0.16);
+  transition:
+    padding 0.3s ease,
+    background 0.3s ease;
+}
+
+.contact-link:hover {
+  padding-left: 18px;
+}
+
+.contact-label {
+  display: block;
+  margin-bottom: 9px;
+  color: var(--burgundy);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.contact-link h3 {
+  margin: 0;
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(28px, 3vw, 42px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+}
+
+.contact-arrow {
+  color: var(--burgundy);
+  font-size: 20px;
+}
+
+
+/* INTERESTS */
+
+.contact-interest-list {
+  border-top: 1px solid rgba(16, 28, 44, 0.18);
+}
+
+.contact-interest-list a {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 27px 0;
+  border-bottom: 1px solid rgba(16, 28, 44, 0.18);
+  color: var(--navy);
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 500;
+  letter-spacing: -0.025em;
+  transition:
+    padding 0.3s ease,
+    color 0.3s ease;
+}
+
+.contact-interest-list a:hover {
+  padding-left: 18px;
+  color: var(--burgundy);
+}
+
+.contact-interest-list strong {
+  font-family: var(--sans);
+  font-size: 18px;
+  font-weight: 400;
+}
+
+
+/* RESEARCH CTA */
+
+.contact-research-cta {
+  padding: 125px 0;
+  background: var(--burgundy);
+  color: var(--white);
+}
+
+.contact-research-grid {
+  display: grid;
+  grid-template-columns: 1fr 0.7fr;
+  gap: 120px;
+  align-items: end;
+}
+
+.contact-research-grid h2 {
+  max-width: 800px;
+  margin: 20px 0 0;
+  font-family: var(--serif);
+  font-size: clamp(55px, 7vw, 100px);
+  font-weight: 500;
+  letter-spacing: -0.055em;
+  line-height: 0.86;
+}
+
+.contact-research-grid h2 em {
+  display: block;
+  color: var(--sand);
+  font-style: italic;
+}
+
+.contact-research-grid p {
+  margin-bottom: 25px;
+  color: rgba(255, 253, 248, 0.68);
+  font-size: 14px;
+  line-height: 1.9;
+}
+
+.contact-cta-link {
+  display: inline-block;
+  color: var(--white);
+  border-bottom: 1px solid rgba(255, 253, 248, 0.6);
+  padding-bottom: 5px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+
+/* MOBILE */
+
+@media (max-width: 900px) {
+
+  .contact-grid,
+  .contact-research-grid {
+    grid-template-columns: 1fr;
+    gap: 60px;
+  }
+
+}
+
+
+@media (max-width: 680px) {
+
+  .contact-hero {
+    padding: 110px 0 85px;
+  }
+
+  .contact-hero h1 {
+    font-size: 60px;
+  }
+
+  .contact-hero p {
+    font-size: 14px;
+  }
+
+  .contact-intro h2 {
+    font-size: 54px;
+  }
+
+  .contact-link h3 {
+    font-size: 30px;
+  }
+
+  .contact-research-cta {
+    padding: 90px 0;
+  }
+
+  .contact-research-grid h2 {
+    font-size: 57px;
+  }
+
+     }
