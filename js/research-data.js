@@ -1,5 +1,5 @@
 ```javascript
-const researchItems = [
+window.researchItems = [
 
   {
     id: "r001",
