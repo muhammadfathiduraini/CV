@@ -1,273 +1,505 @@
-```javascript
-document.addEventListener("DOMContentLoaded", () => {
+/* =========================================================
+   FATHI ACADEMIC CV & RESEARCH
+   MAIN JAVASCRIPT
+   ========================================================= */
 
-  /* ================================
-     MOBILE NAVIGATION
-  ================================= */
 
-  const menuToggle =
-    document.querySelector(".menu-toggle");
+/* =========================================================
+   MOBILE NAVIGATION
+   ========================================================= */
 
-  const navigation =
-    document.querySelector(".navigation");
+const navToggle = document.querySelector(".nav-toggle");
+const siteNav = document.querySelector(".site-nav");
 
-  if (menuToggle && navigation) {
+if (navToggle && siteNav) {
 
-    menuToggle.addEventListener("click", () => {
+  navToggle.addEventListener("click", () => {
 
-      navigation.classList.toggle("open");
+    siteNav.classList.toggle("open");
+    navToggle.classList.toggle("active");
 
-      menuToggle.classList.toggle("open");
+  });
+
+}
+
+
+/* Close mobile menu after clicking a link */
+
+document.querySelectorAll(".site-nav a").forEach(link => {
+
+  link.addEventListener("click", () => {
+
+    if (siteNav) {
+      siteNav.classList.remove("open");
+    }
+
+    if (navToggle) {
+      navToggle.classList.remove("active");
+    }
+
+  });
+
+});
+
+
+/* =========================================================
+   RESEARCH CARD
+   Used on Home page
+   ========================================================= */
+
+function createResearchCard(item) {
+
+  const article = document.createElement("article");
+
+  article.className = "research-card";
+
+  article.innerHTML = `
+
+    <div class="research-card-top">
+
+      <span class="research-year">
+        ${item.year}
+      </span>
+
+      <span class="research-type">
+        ${item.type}
+      </span>
+
+    </div>
+
+
+    <h3>
+      ${item.title}
+    </h3>
+
+
+    <p>
+      ${item.description}
+    </p>
+
+
+    <div class="research-card-bottom">
+
+      <div class="research-fields">
+
+        ${item.fields
+          .map(field => `<span>${field}</span>`)
+          .join("")}
+
+      </div>
+
+      <a href="${item.url}" class="text-link">
+        Read Research →
+      </a>
+
+    </div>
+
+  `;
+
+  return article;
+}
+
+
+/* =========================================================
+   HOME — SELECTED RESEARCH
+   ========================================================= */
+
+const homeResearch =
+  document.getElementById("homeResearch");
+
+if (homeResearch) {
+
+  researchItems
+    .slice(0, 3)
+    .forEach(item => {
+
+      homeResearch.appendChild(
+        createResearchCard(item)
+      );
+
+    });
+
+}
+
+
+/* =========================================================
+   ARCHIVE ITEM
+   Used on Research / Articles / Briefs / Thesis / CV
+   ========================================================= */
+
+function createArchiveItem(item) {
+
+  const article = document.createElement("a");
+
+  article.href = item.url;
+
+  article.className = "archive-item";
+
+  article.innerHTML = `
+
+    <div class="archive-year">
+      ${item.year}
+    </div>
+
+
+    <div class="archive-main">
+
+      <h3 class="archive-title">
+        ${item.title}
+      </h3>
+
+
+      <p class="archive-description">
+        ${item.description}
+      </p>
+
+
+      <div class="archive-fields">
+
+        ${item.fields
+          .map(field => `<span>${field}</span>`)
+          .join("")}
+
+      </div>
+
+    </div>
+
+
+    <div class="archive-type">
+      ${item.type}
+    </div>
+
+  `;
+
+  return article;
+}
+
+
+/* =========================================================
+   RESEARCH ARCHIVE
+   ========================================================= */
+
+const researchList =
+  document.getElementById("researchList");
+
+if (researchList) {
+
+  const filterButtons =
+    document.querySelectorAll(".filter-button");
+
+
+  function renderResearch(filter = "All") {
+
+    researchList.innerHTML = "";
+
+
+    const filteredItems =
+      filter === "All"
+        ? researchItems
+        : researchItems.filter(item =>
+            item.fields.includes(filter)
+          );
+
+
+    if (filteredItems.length === 0) {
+
+      researchList.innerHTML = `
+
+        <div class="empty-state">
+
+          <p>
+            No research entries are currently available
+            under this field.
+          </p>
+
+        </div>
+
+      `;
+
+      return;
+
+    }
+
+
+    filteredItems.forEach(item => {
+
+      researchList.appendChild(
+        createArchiveItem(item)
+      );
 
     });
 
   }
 
 
-  /* ================================
-     RESEARCH CARD
-  ================================= */
+  /* -------------------------------------------------------
+     URL FILTER
+     Example:
+     research.html?field=International%20Law
+     ------------------------------------------------------- */
 
-  function createResearchCard(item) {
+  const params =
+    new URLSearchParams(window.location.search);
 
-    return `
-
-      <article class="research-card">
-
-        <div class="research-meta">
-
-          <span>
-            ${item.type}
-          </span>
-
-          <span>
-            ${item.year}
-          </span>
-
-        </div>
+  const requestedField =
+    params.get("field");
 
 
-        <h3>
-          <a href="${item.url}">
-            ${item.title}
-          </a>
-        </h3>
+  let initialFilter = "All";
 
+
+  if (requestedField) {
+
+    const matchingButton =
+      [...filterButtons].find(button =>
+        button.dataset.filter === requestedField
+      );
+
+
+    if (matchingButton) {
+
+      initialFilter =
+        matchingButton.dataset.filter;
+
+
+      filterButtons.forEach(button =>
+        button.classList.remove("active")
+      );
+
+
+      matchingButton.classList.add("active");
+
+    }
+
+  }
+
+
+  renderResearch(initialFilter);
+
+
+  /* -------------------------------------------------------
+     FILTER BUTTONS
+     ------------------------------------------------------- */
+
+  filterButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      filterButtons.forEach(btn =>
+        btn.classList.remove("active")
+      );
+
+
+      button.classList.add("active");
+
+
+      const filter =
+        button.dataset.filter;
+
+
+      renderResearch(filter);
+
+
+      /* Update URL without reloading page */
+
+      const newUrl =
+        filter === "All"
+          ? window.location.pathname
+          : `${window.location.pathname}?field=${encodeURIComponent(filter)}`;
+
+
+      window.history.replaceState(
+        {},
+        "",
+        newUrl
+      );
+
+    });
+
+  });
+
+}
+
+
+/* =========================================================
+   ARTICLES
+   ========================================================= */
+
+const articleList =
+  document.getElementById("articleList");
+
+if (articleList) {
+
+  const articles =
+    researchItems.filter(item =>
+      item.category === "Article"
+    );
+
+
+  if (articles.length === 0) {
+
+    articleList.innerHTML = `
+
+      <div class="empty-state">
 
         <p>
-          ${item.description}
+          No research articles have been added yet.
         </p>
 
-
-        <div class="research-tags">
-
-          ${item.fields
-            .map(field => `<span>${field}</span>`)
-            .join("")}
-
-        </div>
-
-
-        <a
-          href="${item.url}"
-          class="text-link"
-        >
-          Read research →
-        </a>
-
-      </article>
+      </div>
 
     `;
-  }
 
+  } else {
 
-  /* ================================
-     HOME RESEARCH
-  ================================= */
+    articles.forEach(item => {
 
-  const homeResearch =
-    document.querySelector("#homeResearch");
+      articleList.appendChild(
+        createArchiveItem(item)
+      );
 
-  if (homeResearch) {
-
-    homeResearch.innerHTML =
-      researchItems
-        .slice(0, 3)
-        .map(createResearchCard)
-        .join("");
+    });
 
   }
 
-
-  /* ================================
-     RESEARCH PAGE
-  ================================= */
-
-  const researchList =
-    document.querySelector("#researchList");
-
-  const researchFilters =
-    document.querySelector("#researchFilters");
+}
 
 
-  if (researchList) {
+/* =========================================================
+   RESEARCH BRIEFS
+   ========================================================= */
 
-    function displayResearch(filter = "All") {
+const briefList =
+  document.getElementById("briefList");
 
-      let filtered =
-        researchItems;
+if (briefList) {
 
-
-      if (filter !== "All") {
-
-        filtered =
-          researchItems.filter(item =>
-            item.fields.includes(filter)
-          );
-
-      }
+  const briefs =
+    researchItems.filter(item =>
+      item.category === "Brief"
+    );
 
 
-      researchList.innerHTML =
-        filtered
-          .map(item => `
+  if (briefs.length === 0) {
 
-            <article class="research-row">
+    briefList.innerHTML = `
 
-              <div class="research-row-type">
-                ${item.type}
-              </div>
+      <div class="empty-state">
 
-              <div>
+        <p>
+          No research briefs have been added yet.
+        </p>
 
-                <h3>
-                  <a href="${item.url}">
-                    ${item.title}
-                  </a>
-                </h3>
+      </div>
 
-                <p>
-                  ${item.description}
-                </p>
+    `;
 
-              </div>
+  } else {
 
-              <div class="research-row-year">
-                ${item.year}
-              </div>
+    briefs.forEach(item => {
 
-            </article>
+      briefList.appendChild(
+        createArchiveItem(item)
+      );
 
-          `)
-          .join("");
-
-    }
-
-
-    displayResearch();
-
-
-    if (researchFilters) {
-
-      const fields = [
-        "All",
-        ...new Set(
-          researchItems.flatMap(
-            item => item.fields
-          )
-        )
-      ];
-
-
-      researchFilters.innerHTML =
-        fields
-          .map((field, index) => `
-
-            <button
-              class="filter-button ${index === 0 ? "active" : ""}"
-              data-filter="${field}"
-            >
-              ${field}
-            </button>
-
-          `)
-          .join("");
-
-
-      researchFilters
-        .querySelectorAll(".filter-button")
-        .forEach(button => {
-
-          button.addEventListener(
-            "click",
-            () => {
-
-              researchFilters
-                .querySelectorAll(".filter-button")
-                .forEach(btn =>
-                  btn.classList.remove("active")
-                );
-
-
-              button.classList.add("active");
-
-
-              displayResearch(
-                button.dataset.filter
-              );
-
-            }
-          );
-
-        });
-
-    }
+    });
 
   }
 
-
-  /* ================================
-     CV RESEARCH
-  ================================= */
-
-  const cvResearch =
-    document.querySelector("#cvResearch");
+}
 
 
-  if (cvResearch) {
+/* =========================================================
+   THESIS
+   ========================================================= */
 
-    cvResearch.innerHTML =
-      researchItems
-        .map(item => `
+const thesisList =
+  document.getElementById("thesisList");
 
-          <a
-            class="cv-research-item"
-            href="${item.url}"
-          >
+if (thesisList) {
 
-            <div>
+  const theses =
+    researchItems.filter(item =>
+      item.category === "Thesis"
+    );
 
-              <strong>
-                ${item.title}
-              </strong>
 
-              <small>
-                ${item.type} · ${item.year}
-              </small>
+  if (theses.length === 0) {
 
-            </div>
+    thesisList.innerHTML = `
 
-            <span>
-              ↗
-            </span>
+      <div class="empty-state">
 
-          </a>
+        <p>
+          No thesis research has been added yet.
+        </p>
 
-        `)
-        .join("");
+      </div>
+
+    `;
+
+  } else {
+
+    theses.forEach(item => {
+
+      thesisList.appendChild(
+        createArchiveItem(item)
+      );
+
+    });
 
   }
 
+}
 
-});
-```
+
+/* =========================================================
+   CV — RESEARCH
+   ========================================================= */
+
+const cvResearch =
+  document.getElementById("cvResearch");
+
+if (cvResearch) {
+
+  if (researchItems.length === 0) {
+
+    cvResearch.innerHTML = `
+
+      <div class="empty-state">
+
+        <p>
+          No research entries have been added yet.
+        </p>
+
+      </div>
+
+    `;
+
+  } else {
+
+    researchItems.forEach(item => {
+
+      cvResearch.appendChild(
+        createArchiveItem(item)
+      );
+
+    });
+
+  }
+
+}
+
+
+/* =========================================================
+   CURRENT YEAR
+   Automatically updates footer year
+   ========================================================= */
+
+document.querySelectorAll("[data-current-year]")
+  .forEach(element => {
+
+    element.textContent =
+      new Date().getFullYear();
+
+  });
