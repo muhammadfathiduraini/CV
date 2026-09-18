@@ -3,32 +3,26 @@
    MAIN JAVASCRIPT
    ========================================================= */
 
-
 document.addEventListener("DOMContentLoaded", () => {
-
 
   /* =========================================================
      RESEARCH DATA
      ========================================================= */
 
   const items = Array.isArray(window.researchItems)
-     ? window.researchItems
-     : [];
+    ? window.researchItems
+    : [];
 
 
   /* =========================================================
      MOBILE NAVIGATION
-     Matches the current HTML:
-     .menu-toggle
-     .navigation
      ========================================================= */
 
   const menuToggle =
     document.querySelector(".menu-toggle");
 
   const navigation =
-     document.querySelector(".main-nav");
-
+    document.querySelector(".main-nav");
 
   if (menuToggle && navigation) {
 
@@ -36,7 +30,6 @@ document.addEventListener("DOMContentLoaded", () => {
       "aria-expanded",
       "false"
     );
-
 
     menuToggle.addEventListener("click", () => {
 
@@ -91,6 +84,10 @@ document.addEventListener("DOMContentLoaded", () => {
     article.className =
       "research-card";
 
+    const fields =
+      Array.isArray(item.fields)
+        ? item.fields
+        : [];
 
     article.innerHTML = `
 
@@ -106,33 +103,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
       </div>
 
-
       <h3>
-        ${item.title || ""}
+        ${item.title || "Untitled Research"}
       </h3>
-
 
       <p>
         ${item.description || ""}
       </p>
 
-
       <div class="research-card-bottom">
 
         <div class="research-fields">
 
-          ${
-            Array.isArray(item.fields)
-              ? item.fields
-                  .map(field =>
-                    `<span>${field}</span>`
-                  )
-                  .join("")
-              : ""
-          }
+          ${fields
+            .map(field => `<span>${field}</span>`)
+            .join("")}
 
         </div>
-
 
         <a
           href="${item.url || "#"}"
@@ -145,8 +132,91 @@ document.addEventListener("DOMContentLoaded", () => {
 
     `;
 
+    return article;
+
+  }
+
+
+  /* =========================================================
+     ARCHIVE ITEM
+     Used on Research / Articles / Briefs / Thesis / CV
+     ========================================================= */
+
+  function createArchiveItem(item) {
+
+    const article =
+      document.createElement("a");
+
+    article.href =
+      item.url || "#";
+
+    article.className =
+      "archive-item";
+
+    const fields =
+      Array.isArray(item.fields)
+        ? item.fields
+        : [];
+
+    article.innerHTML = `
+
+      <div class="archive-year">
+        ${item.year || ""}
+      </div>
+
+      <div class="archive-main">
+
+        <h3 class="archive-title">
+          ${item.title || "Untitled Research"}
+        </h3>
+
+        <p class="archive-description">
+          ${item.description || ""}
+        </p>
+
+        <div class="archive-fields">
+
+          ${fields
+            .map(field => `<span>${field}</span>`)
+            .join("")}
+
+        </div>
+
+      </div>
+
+      <div class="archive-type">
+        ${item.type || ""}
+      </div>
+
+    `;
 
     return article;
+
+  }
+
+
+  /* =========================================================
+     EMPTY STATE
+     ========================================================= */
+
+  function showEmptyState(element, message) {
+
+    if (!element) {
+      return;
+    }
+
+    element.innerHTML = `
+
+      <div class="empty-state">
+
+        <p>
+          ${message}
+        </p>
+
+      </div>
+
+    `;
+
   }
 
 
@@ -155,114 +225,33 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   const homeResearch =
-    document.getElementById(
-      "homeResearch"
-    );
-
+    document.getElementById("homeResearch");
 
   if (homeResearch) {
 
-    const selectedItems =
-      items.slice(0, 3);
+    homeResearch.innerHTML = "";
 
+    if (items.length === 0) {
 
-    if (selectedItems.length === 0) {
-
-      homeResearch.innerHTML = `
-
-        <div class="empty-state">
-
-          <p>
-            Research projects will be added here.
-          </p>
-
-        </div>
-
-      `;
+      showEmptyState(
+        homeResearch,
+        "No research entries have been added yet."
+      );
 
     } else {
 
-      selectedItems.forEach(item => {
+      items
+        .slice(0, 3)
+        .forEach(item => {
 
-        homeResearch.appendChild(
-          createResearchCard(item)
-        );
+          homeResearch.appendChild(
+            createResearchCard(item)
+          );
 
-      });
+        });
 
     }
 
-  }
-
-
-  /* =========================================================
-     ARCHIVE ITEM
-     Used on:
-     Research
-     Articles
-     Briefs
-     Thesis
-     CV
-     ========================================================= */
-
-  function createArchiveItem(item) {
-
-    const article =
-      document.createElement("a");
-
-
-    article.href =
-      item.url || "#";
-
-
-    article.className =
-      "archive-item";
-
-
-    article.innerHTML = `
-
-      <div class="archive-year">
-        ${item.year || ""}
-      </div>
-
-
-      <div class="archive-main">
-
-        <h3 class="archive-title">
-          ${item.title || ""}
-        </h3>
-
-
-        <p class="archive-description">
-          ${item.description || ""}
-        </p>
-
-
-        <div class="archive-fields">
-
-          ${
-            Array.isArray(item.fields)
-              ? item.fields
-                  .map(field =>
-                    `<span>${field}</span>`
-                  )
-                  .join("")
-              : ""
-          }
-
-        </div>
-
-      </div>
-
-
-      <div class="archive-type">
-        ${item.type || ""}
-      </div>
-
-    `;
-
-
-    return article;
   }
 
 
@@ -271,10 +260,7 @@ document.addEventListener("DOMContentLoaded", () => {
      ========================================================= */
 
   const researchList =
-    document.getElementById(
-      "researchList"
-    );
-
+    document.getElementById("researchList");
 
   if (researchList) {
 
@@ -284,9 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
       );
 
 
-    function renderResearch(
-      filter = "All"
-    ) {
+    function renderResearch(filter = "All") {
 
       researchList.innerHTML = "";
 
@@ -294,28 +278,27 @@ document.addEventListener("DOMContentLoaded", () => {
       const filteredItems =
         filter === "All"
           ? items
-          : items.filter(item =>
-              Array.isArray(item.fields) &&
-              item.fields.includes(filter)
-            );
+          : items.filter(item => {
+
+              const fields =
+                Array.isArray(item.fields)
+                  ? item.fields
+                  : [];
+
+              return fields.includes(filter);
+
+            });
 
 
       if (filteredItems.length === 0) {
 
-        researchList.innerHTML = `
-
-          <div class="empty-state">
-
-            <p>
-              No research entries are currently
-              available under this field.
-            </p>
-
-          </div>
-
-        `;
+        showEmptyState(
+          researchList,
+          "No research entries are currently available under this field."
+        );
 
         return;
+
       }
 
 
@@ -341,7 +324,6 @@ document.addEventListener("DOMContentLoaded", () => {
         window.location.search
       );
 
-
     const requestedField =
       params.get("field");
 
@@ -353,11 +335,13 @@ document.addEventListener("DOMContentLoaded", () => {
     if (requestedField) {
 
       const matchingButton =
-        Array.from(filterButtons)
-          .find(button =>
+        [
+          ...filterButtons
+        ].find(
+          button =>
             button.dataset.filter ===
             requestedField
-          );
+        );
 
 
       if (matchingButton) {
@@ -366,11 +350,13 @@ document.addEventListener("DOMContentLoaded", () => {
           matchingButton.dataset.filter;
 
 
-        filterButtons.forEach(button =>
+        filterButtons.forEach(button => {
+
           button.classList.remove(
             "active"
-          )
-        );
+          );
+
+        });
 
 
         matchingButton.classList.add(
@@ -397,11 +383,13 @@ document.addEventListener("DOMContentLoaded", () => {
         "click",
         () => {
 
-          filterButtons.forEach(btn =>
+          filterButtons.forEach(btn => {
+
             btn.classList.remove(
               "active"
-            )
-          );
+            );
+
+          });
 
 
           button.classList.add(
@@ -410,14 +398,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
           const filter =
-            button.dataset.filter ||
-            "All";
+            button.dataset.filter;
 
 
-          renderResearch(filter);
+          renderResearch(
+            filter
+          );
 
-
-          /* Update URL */
 
           const newUrl =
             filter === "All"
@@ -448,29 +435,21 @@ document.addEventListener("DOMContentLoaded", () => {
       "articleList"
     );
 
-
   if (articleList) {
 
     const articles =
-      items.filter(item =>
-        item.category === "Article"
+      items.filter(
+        item =>
+          item.category === "Article"
       );
 
 
     if (articles.length === 0) {
 
-      articleList.innerHTML = `
-
-        <div class="empty-state">
-
-          <p>
-            No research articles have been
-            added yet.
-          </p>
-
-        </div>
-
-      `;
+      showEmptyState(
+        articleList,
+        "No research articles have been added yet."
+      );
 
     } else {
 
@@ -496,29 +475,21 @@ document.addEventListener("DOMContentLoaded", () => {
       "briefList"
     );
 
-
   if (briefList) {
 
     const briefs =
-      items.filter(item =>
-        item.category === "Brief"
+      items.filter(
+        item =>
+          item.category === "Brief"
       );
 
 
     if (briefs.length === 0) {
 
-      briefList.innerHTML = `
-
-        <div class="empty-state">
-
-          <p>
-            No research briefs have been
-            added yet.
-          </p>
-
-        </div>
-
-      `;
+      showEmptyState(
+        briefList,
+        "No research briefs have been added yet."
+      );
 
     } else {
 
@@ -544,29 +515,21 @@ document.addEventListener("DOMContentLoaded", () => {
       "thesisList"
     );
 
-
   if (thesisList) {
 
     const theses =
-      items.filter(item =>
-        item.category === "Thesis"
+      items.filter(
+        item =>
+          item.category === "Thesis"
       );
 
 
     if (theses.length === 0) {
 
-      thesisList.innerHTML = `
-
-        <div class="empty-state">
-
-          <p>
-            No thesis research has been
-            added yet.
-          </p>
-
-        </div>
-
-      `;
+      showEmptyState(
+        thesisList,
+        "No thesis research has been added yet."
+      );
 
     } else {
 
@@ -592,23 +555,14 @@ document.addEventListener("DOMContentLoaded", () => {
       "cvResearch"
     );
 
-
   if (cvResearch) {
 
     if (items.length === 0) {
 
-      cvResearch.innerHTML = `
-
-        <div class="empty-state">
-
-          <p>
-            No research entries have been
-            added yet.
-          </p>
-
-        </div>
-
-      `;
+      showEmptyState(
+        cvResearch,
+        "No research entries have been added yet."
+      );
 
     } else {
 
@@ -627,7 +581,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* =========================================================
      CURRENT YEAR
-     Automatically updates footer year
      ========================================================= */
 
   document
