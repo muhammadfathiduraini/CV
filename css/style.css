@@ -1986,3 +1986,45 @@ h3 em,
   opacity: 1;
   visibility: visible;
 }
+/* =========================================================
+   FINAL CONTENT VISIBILITY FIX
+========================================================= */
+
+/* Never hide primary page content because of JS animation */
+.hero-copy,
+.hero-aside,
+.hero-name,
+.hero-description,
+.section-heading,
+.section-intro,
+.interest-item,
+.research-row,
+.academic-item,
+.contact-preview,
+.archive-row,
+.archive-content,
+.archive-meta {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
+
+
+/* Research filtering still works */
+.research-row[hidden] {
+  display: none !important;
+}
+
+
+/* Keep mobile navigation independent */
+.main-nav {
+  visibility: visible;
+}
+
+
+/* Do not allow a missing JS animation to hide content */
+.reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+  transform: none !important;
+}
