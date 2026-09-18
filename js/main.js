@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.querySelector(".menu-toggle");
 
   const navigation =
-    document.querySelector(".navigation");
+     document.querySelector(".main-nav");
 
 
   if (menuToggle && navigation) {
