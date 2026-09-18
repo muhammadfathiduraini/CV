@@ -788,7 +788,155 @@ h3 em,
   transform: translate(4px, -4px);
 }
 
+/* =========================================================
+   RESEARCH FILTERS
+========================================================= */
 
+.research-filter-area {
+  margin-bottom: 55px;
+}
+
+.filter-heading {
+  margin-bottom: 18px;
+
+  color: rgba(255, 255, 255, .42);
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+.research-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-button {
+  padding: 11px 15px;
+
+  border: 1px solid rgba(255, 255, 255, .18);
+  border-radius: 0;
+
+  background: transparent;
+  color: rgba(255, 255, 255, .55);
+
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition:
+    background .3s var(--ease),
+    color .3s var(--ease),
+    border-color .3s var(--ease),
+    transform .3s var(--ease);
+}
+
+.filter-button:hover {
+  border-color: rgba(255, 255, 255, .45);
+
+  color: var(--white);
+
+  transform: translateY(-1px);
+}
+
+.filter-button.active {
+  border-color: var(--sand);
+
+  background: var(--sand);
+  color: var(--navy);
+}
+
+
+/* =========================================================
+   RESEARCH FILTER STATES
+========================================================= */
+
+.research-list {
+  border-top: 1px solid var(--line-light);
+}
+
+.research-row {
+  transition:
+    opacity .3s var(--ease),
+    transform .3s var(--ease);
+}
+
+.research-row.filter-hidden {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.research-row[hidden] {
+  display: none;
+}
+
+
+/* =========================================================
+   RESEARCH EMPTY STATE
+========================================================= */
+
+.research-empty {
+  padding: 70px 0;
+
+  border-bottom: 1px solid var(--line-light);
+
+  color: rgba(255, 255, 255, .5);
+}
+
+.research-empty p {
+  margin: 0;
+
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+
+/* =========================================================
+   RESEARCH RESPONSIVE
+========================================================= */
+
+@media (max-width: 820px) {
+
+  .research-filter-area {
+    margin-bottom: 40px;
+  }
+
+  .research-filters {
+    gap: 6px;
+  }
+
+  .filter-button {
+    padding: 10px 12px;
+
+    font-size: 8px;
+  }
+
+}
+
+
+@media (max-width: 560px) {
+
+  .research-filters {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .filter-button {
+    width: 100%;
+
+    text-align: left;
+  }
+
+  .filter-button:first-child {
+    grid-column: 1 / -1;
+  }
+
+}
 /* =========================================================
    ACADEMIC PROFILE
 ========================================================= */
