@@ -1,4 +1,3 @@
-```javascript
 window.researchItems = [
 
   {
@@ -86,4 +85,3 @@ window.researchItems = [
   }
 
 ];
-```
